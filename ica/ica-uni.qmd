@@ -1,5 +1,95 @@
 ---
-title: "Univariate Viz"
+title: "Best Work Practice"
 ---
 
 Use this file for practice with the **univariate viz** in-class activity.  Refer to the class website for details.
+
+
+
+
+```{r}
+CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
+Soccer_stats = read.csv("")
+
+
+head(CA_Test_Scores)
+
+```
+
+
+
+```{r}
+
+CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
+
+ggplot(CA_Test_Scores, aes(x = income, y = math)) + 
+  geom_point() + 
+  geom_smooth() +
+  theme_bw() +
+  labs(title = "California: Income vs. Standardized Math Test Scores",
+       x = "Income",
+       y = "Test Score",
+       caption = "Created By: Nolan Rittenberg")
+
+```
+:::
+This is a bivariate graph that shows the correlation between household income and standardized math test scores in the state of California. Both variables are numerical. From this graph, it can be concluded that lower household income is correlated with a lower standardized math test score.
+:::
+
+
+```{r}
+library(tidyverse)
+
+# Import data
+weather <- read.csv("https://mac-stat.github.io/data/weather_3_locations.csv") |> 
+  mutate(date = as.Date(date))  
+
+head(weather)
+
+ggplot(weather, aes(x = humidity9am, fill = raintoday)) + 
+  geom_density(alpha = 0.7) + 
+  labs(x = "9AM Humidity", fill = "Rain") + 
+  theme_bw()
+
+
+ggplot(weather, aes(x = ))
+
+```
+
+
+
+```{r}
+Chicago_Crime = read.csv("https://data.cityofnewyork.us/api/views/833y-fsy8/rows.csv?accessType=DOWNLOAD")
+
+
+head(Chicago_Crime)
+```
+
+
+```{r}
+
+simpsons_episodes = read.csv("/Users/nrittenberg24/Desktop/simpsons_episodes.csv")
+head(simpsons_episodes)
+dim(simpsons_episodes)
+
+
+ggplot(simpsons_episodes, aes(x = imdb_rating)) + 
+  geom_density() + 
+  theme_minimal() +
+  labs(title = "                       IMDB Ratings of Individual Simpsons Epidodes",
+       x = "IMDB Rating",
+       y = "Percentage of Episodes",
+       caption = "Created By: Nolan Rittenberg")
+
+```
+
+
+
+
+
+
+
+
+
+
+
