@@ -3,3 +3,24 @@ title: "Trivariate Viz"
 ---
 
 Use this file to generate a professional looking **trivariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+
+
+
+
+```{r}
+simpsons_episodes = read.csv("/Users/nrittenberg24/Desktop/simpsons_episodes.csv")
+head(simpsons_episodes)
+dim(simpsons_episodes)
+
+
+library(ggplot2)
+library(dplyr)
+
+ggplot(simpsons_episodes, aes(x = views, y = imdb_rating, color = season)) +
+  scale_color_viridis_b() +
+  geom_point() +
+  labs(title = "Which Seasons of The Simpsons Have the Most Views and Highest Ratings?", x = "Views", y = "IMDB Rating", caption = "Created By:
+           Nolan Rittenberg") + 
+  theme_minimal()
+```
+

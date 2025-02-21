@@ -3,3 +3,56 @@ title: "Bivariate Viz"
 ---
 
 Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.
+
+
+
+
+```{r}
+
+CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
+
+ggplot(CA_Test_Scores, aes(x = income, y = math)) + 
+  geom_point() + 
+  geom_smooth() +
+  theme_bw() +
+  labs(title = "California: Income vs. Standardized Math Test Scores",
+       x = "Income",
+       y = "Test Score",
+       caption = "Created By: Nolan Rittenberg")
+
+```
+:::
+This is a bivariate graph that shows the correlation between household income and standardized math test scores in the state of California. Both variables are numerical. From this graph, it can be concluded that lower household income is correlated with a lower standardized math test score.
+:::
+
+
+```{r}
+
+
+data(bechdel)
+new_bechdel <- bechdel |>
+  mutate(clean_test = factor(clean_test, c("nowomen", "notalk", "men", "dubious", "ok"))) |>
+  mutate(half_decades = cut(year, breaks = seq(1969, 2014, by = 5)))
+
+
+ggplot(new_bechdel, aes(x = half_decades, fill = clean_test)) + 
+  geom_bar(position = "dodge") +
+  scale_color_viridis_b() +
+ theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(
+    title = "New Bechdel Test Over The Past 45 Years",
+       x = "Years",
+       y = "Number of Movies",
+       caption = "Created By: Nolan Rittenberg")
+```
+
+
+
+
+
+
+
+
+
+
+

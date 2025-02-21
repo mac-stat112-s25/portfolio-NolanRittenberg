@@ -1,5 +1,253 @@
----
-title: "Bivariate Viz"
----
+```{r}
+# Load data
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
 
-Use this file for practice with the **bivariate viz** in-class activity.  Refer to the class website for details.
+# Check it out
+head(elections)
+```
+
+```{r}
+# Load data
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+
+# Check it out
+head(elections)
+```
+
+```{r}
+library(tidyverse)
+
+ggplot(elections, aes(x = repub_pct_16, y = repub_pct_20)) + geom_point()
+
+```
+
+
+```{r}
+# Set up the plotting frame
+# How does this differ than the frame for our histogram of repub_pct_20 alone?
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16))
+
+# Add a layer of points for each county
+# Take note of the geom!
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point()
+
+# Change the shape of the points
+# What happens if you change the shape to another number?
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point(shape = 3)
+
+# YOU TRY: Modify the code to make the points "orange"
+# NOTE: Try to anticipate if "color" or "fill" will be useful here. Then try both.
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point()
+
+# Add a layer that represents each county by the state it's in
+# Take note of the geom and the info it needs to run!
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_text(aes(label = state_abbr))
+```
+## Exercise 3:
+There is a strong relationship between the percent of republican voters in each state during the 2016 and 2020 election. If a state had a high percentage of republican voters in 2016, they most likely had a high percentage of republican voters in 2020. 
+
+There is a positive correlation.
+
+Some states are outliers, meaning their percentage of republican voters changed between the elections. 
+
+
+```{r}
+
+
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) + geom_point() + geom_smooth()
+
+ggplot(elections, aes(y = repub_pct_20, x = repub_pct_16)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+## geom_smooth() adds a smooth localized model line.
+## best linear model: method = "lm"
+
+
+
+
+
+
+```{r}
+# Scatterplot of repub_pct_20 vs median_rent
+
+ggplot(elections, aes(y = median_rent, x = repub_pct_20)) + geom_point() + geom_smooth()
+
+
+ggplot(elections, aes(y = median_age, x = repub_pct_20)) + geom_point() + geom_smooth()
+
+
+# Scatterplot of repub_pct_20 vs median_age
+```
+## Less correlation
+
+
+
+## Exercise 6:
+
+
+```{r}
+ggplot(elections, aes(y = repub_pct_20, x = historical)) +
+  geom_point()
+
+## This graph is not good for categorical data and numerical data together because every point falls on the same parralel vertical lines, which does not show positive or negative trends. 
+```
+
+
+Exercise 7:
+
+```{r}
+# Side-by-side violin plots
+ggplot(elections, aes(y = repub_pct_20, x = historical)) +
+  geom_violin()
+
+# Side-by-side boxplots (defined below)
+ggplot(elections, aes(y = repub_pct_20, x = historical)) +
+  geom_boxplot()
+```
+
+
+
+Exercise 8:
+```{r}
+ggplot(elections, aes(x = repub_pct_20)) +
+  geom_density()
+```
+
+
+Exercise 9:
+
+```{r}
+# Name two "bad" things about this plot
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density()
+
+# What does scale_fill_manual do?
+# scale_fill_manual allows the colors to be changed for the geom_density
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density() +
+  scale_fill_manual(values = c("blue", "purple", "red"))
+
+# What does alpha = 0.5 do?
+# alpha = 0.5 makes the color transparent. Different alpha values make different transparency levels. 
+
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("blue", "purple", "red"))
+
+# What does facet_wrap do?!
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density() +
+  scale_fill_manual(values = c("blue", "purple", "red")) +
+  facet_wrap(~ historical)
+
+# Let's try a similar grouping strategy with a histogram instead of density plot.
+# Why is this terrible?
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_histogram(color = "white") +
+  scale_fill_manual(values = c("blue", "purple", "red"))
+
+```
+
+```{r}
+ggplot(elections, aes(x = repub_pct_20, fill = historical)) +
+  geom_density(alpha = 0.5) +
+  scale_fill_manual(values = c("blue", "purple", "red"))
+```
+
+Exercise 10: 
+
+My favorite graph was the geon_density graph.
+
+A pro of density plots related to box plots is that they show a more detailed representation of the entire data set. 
+
+One con of density plots relative to boxplots is that they are harder to interpret. 
+
+
+
+Exercise 11:
+
+```{r}
+# Plot 1: adjust this to recreate the top plot
+ggplot(elections, aes(x = historical)) +
+  geom_bar()
+```
+
+
+```{r}
+# Plot 2: adjust this to recreate the bottom plot
+ggplot(elections, aes(x = winner_20)) +
+  geom_bar()
+```
+
+Exercise 12:
+
+```{r}
+# A stacked bar plot
+# How are the "historical" and "winner_20" variables mapped to the plot, i.e. what roles do they play?
+ggplot(elections, aes(x = historical, fill = winner_20)) +
+  geom_bar()
+
+# A faceted bar plot
+ggplot(elections, aes(x = winner_20)) +
+  geom_bar() +
+  facet_wrap(~ historical)
+
+# A side-by-side bar plot
+# Note the new argument to geom_bar
+ggplot(elections, aes(x = historical, fill = winner_20)) +
+  geom_bar(position = "dodge")
+
+# A proportional bar plot
+# Note the new argument to geom_bar
+ggplot(elections, aes(x = historical, fill = winner_20)) +
+  geom_bar(position = "fill")
+```
+
+
+Pro: When there is a noticable difference between the 2 parties' amount of votes, the proportional box plot clearly shows which party had more votes than the other. 
+
+Con: The proportional box plot makes it difficult/impossible to discern the amount of votes that each party recieved. 
+
+My favorite bar plot was:
+ggplot(elections, aes(x = historical, fill = winner_20)) +
+  geom_bar()
+
+
+Exercise 13:
+
+```{r}
+weather <- read.csv("https://mac-stat.github.io/data/weather_3_locations.csv")
+
+# How do 3pm temperatures (temp3pm) differ by location?
+
+# How might we predict the 3pm temperature (temp3pm) by the 9am temperature (temp9am)?
+
+# How do the number of rainy days (raintoday) differ by location?
+
+# Install ggridges package
+library(ggridges)
+
+# Make our first joy plot
+# THINK: What DON'T you like about this?
+# This graph is very hard to discern. 
+ggplot(elections, aes(x = repub_pct_20, y = state_abbr)) + 
+  geom_density_ridges()
+
+# Let's put the states in order by Republican support, not alphabet
+# How do you think fct_reorder works? We'll learn about this later in the semester.
+ggplot(elections, aes(x = repub_pct_20, y = fct_reorder(state_abbr, repub_pct_20))) + 
+  geom_density_ridges(alpha = 0.5)
+```
+
+
+
+
+
+
+

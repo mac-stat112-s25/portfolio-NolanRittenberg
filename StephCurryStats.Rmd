@@ -1,0 +1,42 @@
+---
+title: "StephCurryStats"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+
+# Manually input Stephen Curry's 3PT attempts and makes per season
+curry_data <- data.frame(
+  Season = c("2009-10", "2010-11", "2011-12", "2012-13", "2013-14", "2014-15", "2015-16", "2016-17", "2017-18", "2018-19", "2019-20", "2020-21", "2021-22", "2022-23"),
+  Attempts = c(380, 342, 270, 600, 615, 646, 886, 789, 721, 810, 201, 801, 750, 731),
+  Makes = c(166, 151, 170, 272, 261, 286, 402, 324, 337, 354, 93, 337, 285, 300)
+)
+
+# Convert Season to factor for proper ordering
+curry_data$Season <- factor(curry_data$Season, levels = curry_data$Season)
+
+# Create the plot
+plot <- ggplot(curry_data, aes(x = Season)) +
+  geom_bar(aes(y = Attempts), stat = "identity", fill = "lightblue", alpha = 0.6) +
+  geom_bar(aes(y = Makes), stat = "identity", fill = "darkblue", alpha = 0.8) +
+  geom_text(aes(y = Attempts + 30, label = Attempts), color = "black", size = 3) +
+  geom_text(aes(y = Makes - 20, label = Makes), color = "white", size = 3) +
+  labs(
+    title = "Stephen Curry's 3-Point Attempts and Makes per Season",
+    x = "Season",
+    y = "3PT Shots",
+    fill = "Shot Type"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+# Print the plot
+print(plot)
+
+```
+```{r}
+# Import data
+hikes <- read.csv("https://mac-stat.github.io/data/high_peaks.csv")
+```
+

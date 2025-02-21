@@ -3,3 +3,58 @@ title: "Spatial Viz"
 ---
 
 Use this file to generate a professional looking **spatial** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+
+
+
+
+```{r}
+favorite_stp <- tribble(
+  ~place, ~latitude, ~longitude, ~favorite,
+  "Lake Merritt", 37.803114, -122.257574, "no",
+  "Bishop O'Dowd High School", 37.752794, -122.154875, "yes",
+  "Soccer Field", 37.820813, -122.234928, "yes",
+  "Steep Ravine", 37.883492, -122.627942, "yes",
+  "Sporting CP Soccer Stadium", 38.761197, -9.160796, "no",
+  "San Sebastian, Spain", 43.315804, -1.989508, "no",
+  "Jack London Square", 37.793694, -122.275878, "no",
+  "Oakland Coliseum", 37.751346, -122.200996, "no",
+  "Lake Atitlan", 14.709353, -91.186263, "no",
+  "Lake Tahoe", 39.086824, -120.044983, "no",
+  "Pheonix Cup Soccer Tournament", 33.448376, -112.074036, "no",
+  "Macalester College Soccer Field", 44.935251, -93.168314, "no",
+  "Barcelona", 41.402970, 2.174339, "no"
+  
+)
+
+```
+
+
+```{r}
+# Load the leaflet package
+library(leaflet)
+
+color_palette <- colorFactor(
+  palette = c("orange", "blue"),
+  domain = favorite_stp$favorite
+)
+
+leaflet(data = favorite_stp) |>
+  addTiles() |>
+  addCircleMarkers(
+    lat = ~latitude,
+    lng = ~longitude,
+    color = ~color_palette(favorite),
+    radius = 8,
+    stroke = FALSE,
+    fillOpacity = .85,
+    popup = ~place
+    ) |>
+  addLegend(
+    "topright",
+    pal = color_palette,
+    values = ~favorite, 
+    title = "Nolan Rittenberg's Favorite Places in the World",
+  )
+
+```
+
