@@ -8,33 +8,30 @@ Use this file to generate a professional looking **quadvariate** visualization. 
 
 
 ```{r}
-# Import and check out data
-education <- read.csv("https://mac-stat.github.io/data/sat.csv")
-head(education)
+library(tidyverse)
 
-```
+CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
 
-
-
-```{r}
-
-ggplot(education, aes(y = sat, x = salary, color = cut(expend, 2))) + 
+ggplot(CA_Test_Scores, aes(x = income, y = math, color = read)) + 
   geom_point() + 
-  geom_smooth(se = FALSE, method = "lm")
-
-
+  facet_wrap(~grades) +
+  scale_color_gradient(low = "gold", high = "blue") + 
+  theme_bw() +
+  labs(title = "Income vs. Standardized Reading and Math Test Scores For Grade Level, KK-06 and KK-08 In California Schools",
+       x = "Income",
+       y = "Math Score",
+       color = "Reading Score",
+       caption = "Created By: Nolan Rittenberg",
+       ) +
+    theme(
+    panel.background = element_rect(fill = "grey", color = "grey"),
+    plot.background = element_rect(fill = "grey", color = "grey"),
+    legend.background = element_rect(fill = "grey", color = "grey"),
+    plot.title = element_text(size = 9) 
+    )
+  
 
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,5 +1,8 @@
 ---
 title: "Spatial Viz"
+execute: 
+  warning: false
+  error: false
 ---
 
 Use this file to generate a professional looking **spatial** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
@@ -8,6 +11,10 @@ Use this file to generate a professional looking **spatial** visualization.  The
 
 
 ```{r}
+
+
+library(tidyverse)
+
 favorite_stp <- tribble(
   ~place, ~latitude, ~longitude, ~favorite,
   "Lake Merritt", 37.803114, -122.257574, "no",
@@ -22,8 +29,10 @@ favorite_stp <- tribble(
   "Lake Tahoe", 39.086824, -120.044983, "no",
   "Pheonix Cup Soccer Tournament", 33.448376, -112.074036, "no",
   "Macalester College Soccer Field", 44.935251, -93.168314, "no",
-  "Barcelona", 41.402970, 2.174339, "no"
-  
+  "Barcelona", 41.402970, 2.174339, "no", 
+  "Playa Las Tortugas", 21.341994, -105.242991, "no",
+  "Evergreen Lodge", 37.876005, -119.858070, "no",
+  "Wilder Fields", 37.866482, -122.192308, "no"
 )
 
 ```

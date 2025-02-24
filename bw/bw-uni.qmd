@@ -1,5 +1,8 @@
 ---
 title: "Univariate Viz"
+execute: 
+  warning: false
+  error: false
 ---
 
 Use this file to generate a professional looking **univariate** visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
@@ -16,19 +19,21 @@ dim(simpsons_episodes)
 
 
 ggplot(simpsons_episodes, aes(x = imdb_rating)) + 
-  geom_density(fill = "yellow", color = "skyblue", size = 1, alpha = 0.7) + 
+  geom_density(fill = "yellow", color = "yellow", size = 0, alpha = 0.9) + 
   theme_classic() +
   labs(title = "                       IMDB Ratings of Individual Simpsons Epidodes",
        x = "IMDB Rating",
        y = "Percentage of Episodes",
        caption = "Created By: Nolan Rittenberg") +
   theme(
-    plot.title = element_text(color = "skyblue", size = 14, face = "bold"),  
-    axis.title.x = element_text(color = "skyblue", size = 12, face = "bold"), 
-    axis.title.y = element_text(color = "skyblue", size = 12, face = "bold"),  
-    axis.text = element_text(color = "skyblue", size = 10, face = "bold"), 
-    plot.caption = element_text(color = "skyblue", size = 10, face = "italic") 
-  )
+    plot.title = element_text(color = "black", size = 14, face = "bold"),  
+    axis.title.x = element_text(color = "black", size = 12, face = "bold"), 
+    axis.title.y = element_text(color = "black", size = 12, face = "bold"),  
+    axis.text = element_text(color = "black", size = 10, face = "bold"), 
+    plot.caption = element_text(color = "black", size = 10, face = "italic"),
+    panel.background = element_rect(fill = "skyblue", color = "skyblue"),
+    plot.background = element_rect(fill = "skyblue", color = "skyblue")
+  ) 
 
 
 

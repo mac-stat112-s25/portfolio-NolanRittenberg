@@ -31,12 +31,12 @@ book:
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
 
-    - part: "In-class Activities"
-      chapters: 
-      - ica/ica-uni.qmd
-      - ica/ica-bi.qmd
-      - ica/ica-multi.qmd
-      - ica/ica-spatial.qmd
+    # - part: "In-class Activities"
+      # chapters: 
+      # - ica/ica-uni.qmd
+      # - ica/ica-bi.qmd
+      # - ica/ica-multi.qmd
+      # - ica/ica-spatial.qmd
 
 format:
   html:
