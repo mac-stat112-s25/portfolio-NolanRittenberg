@@ -1,0 +1,245 @@
+---
+title: "ica_10_Reshaping"
+format: html
+---
+
+```{r}
+
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+
+
+```
+
+
+```{r}
+# Using count()
+
+
+# Using group_by() and summarize()
+```
+
+
+
+
+```{r}
+penguin_avg <- penguins |> 
+  group_by(species, sex) |> 
+  summarize(avg_body_mass = mean(body_mass_g, na.rm = TRUE)) |> 
+  na.omit()
+```
+
+```{r}
+# Units of observation = ???
+head(penguins)
+```
+
+
+```{r}
+# Units of observation = ???
+head(penguin_avg)
+```
+
+
+
+```{r}
+penguin_avg
+
+
+
+```
+
+
+```{r}
+
+penguin_avg |> 
+pivot_wider(names_from = sex, values_from = avg_body_mass)
+
+# The units of observation are species, male, and female. The dataset lost the avg_body_mass variable
+```
+
+```{r}
+penguin_avg_wide <- penguin_avg |> 
+  pivot_wider(names_from = sex, values_from = avg_body_mass)
+
+penguin_avg_wide
+
+
+# We can either communicate which variables we WANT to collect into a single column (female, male)
+penguin_avg_wide |> 
+  pivot_longer(cols = c(female, male), names_to = "sex", values_to = "avg_body_mass")
+
+
+# Or which variable(s) we do NOT want to collect into a single column (sex)
+penguin_avg_wide |> 
+  pivot_longer(cols = -species, names_to = "sex", values_to = "avg_body_mass")
+```
+
+
+```{r}
+food <- data.frame(
+  customer = rep(c("A", "B"), each = 3),
+  restaurant = rep(c("Shish", "FrenchMeadow", "DunnBros"), 2),
+  order = c("falafel", "salad", "coffee", "baklava", "pastry", "tea")
+)
+food
+```
+```{r}
+more_food <- data.frame(
+  customer = c("C", "D"),
+  Shish = c("coffee", "maza"),
+  FrenchMeadow = c("soup", "sandwich"),
+  DunnBros = c("cookie", "coffee")
+)
+more_food
+```
+
+
+
+Exercise 1: 
+
+```{r}
+sleep_wide <- read.csv("https://mac-stat.github.io/data/sleep_wide.csv")
+
+head(sleep_wide)
+
+sleep_wide |>
+  pivot_longer(cols = -Subject, names_to = "day", values_to = "reaction_time")
+
+# Units of observation: peoples response
+```
+
+```{r}
+
+sleep_long <- sleep_wide %>%
+  pivot_longer(cols = -Subject, 
+               names_to = "day",
+               names_prefix = "day_",
+               values_to = "reaction_time")
+
+ggplot(sleep_long, aes(y = reaction_time, x = day, color = Subject)) + 
+  geom_line()
+
+```
+
+
+
+```{r}
+
+sleep_long <- sleep_wide |>
+  pivot_longer(cols = -Subject,
+               names_to = "day",
+               names_prefix = "day_",
+               values_to = "reaction_time") |> 
+  mutate(Subject = as.factor(Subject), day = as.numeric(day))
+
+# Check it out
+# Same data, different class
+head(sleep_long)
+
+
+```
+
+
+```{r}
+
+# Make a line plot of reaction time by day for each subject
+# Put these all on the same frame
+
+
+ggplot(sleep_long, aes(y = reaction_time, x = day, color = Subject)) + 
+  geom_line()
+
+
+# Make a line plot of reaction time by day for each subject
+# Put these all on separate frames (one per subject)
+
+ggplot(sleep_long, aes(y = reaction_time, x = day)) + 
+  facet_wrap(~Subject) + 
+  geom_line() 
+
+```
+
+
+Exercise 4:
+
+```{r}
+
+ sleep_long |>
+   pivot_wider(names_from = day, values_from = reaction_time) |> 
+   head()
+
+
+
+ sleep_long |>
+   pivot_wider(names_from = day, values_from = reaction_time, names_prefix = "day_") |> 
+   head()
+```
+
+```{r}
+# Load data
+library(tidyr)
+data("billboard")
+
+# Check it out
+head(billboard)
+```
+
+
+
+```{r}
+ggplot(billboard, aes(y = wk2, x = wk1)) + 
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1)
+```
+
+```{r}
+billboard |> 
+  filter(wk2 > wk1)
+```
+
+```{r}
+
+# Define nov_1999
+nov_1999 <- billboard |> 
+  filter(date.entered == "1999-11-06") |> 
+  select(-track, -date.entered)
+
+# Or
+nov_1999 <- billboard |> 
+  filter(date.entered == "1999-11-06") |> 
+  select(artist, starts_with("wk"))
+
+
+# Confirm that nov_1999 has 2 rows (songs) and 77 columns
+dim(nov_1999)
+
+  
+```
+
+```{r}
+nov_1999 |> 
+  pivot_longer(cols = -artist, names_to = "week", names_prefix = "wk", values_to = "ranking") |> 
+  mutate(week = as.numeric(week)) |> 
+  ggplot(aes(y = ranking, x = week, color = artist)) + 
+    geom_line()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

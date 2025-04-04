@@ -1,0 +1,8 @@
+---
+title: "Exam_1_Cheetsheet"
+format: html
+---
+
+
+My *Cheat Sheet* for Exam 1 STAT112 ![](bw/Page1.jpg), ![](cheat_sheet.png)
+

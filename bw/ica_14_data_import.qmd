@@ -1,0 +1,120 @@
+---
+title: "ica_14_data_import"
+format: html
+---
+
+```{r}
+library(tidyverse)
+my_data <- read_csv("~/Desktop/Stanford Research/ESWT Data Analysis.csv")
+```
+
+
+
+```{r}
+library(tidyverse)
+ imdb_messy <- read_csv("~/Documents/portfolio-NolanRittenberg/data/imdb_5000_messy (1).csv")
+```
+
+
+```{r}
+# This should be the folder where you stored this qmd!
+getwd()
+```
+
+
+Exercise 3:
+```{r}
+imdb_messy |>
+  mutate(across(where(is.character), as.factor)) |>  
+  summary()
+```
+Exercise 4:
+```{r}
+imdb_messy |> 
+  count(color)
+```
+
+
+Exercise 5:
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(color = fct_recode(color,
+                            "Color" = "COLOR",
+                            "Color" = "color",
+                            "Black_White" = "B&W",
+                            "Black_White" = "Black and White"))
+
+imdb_temp |> 
+  count(color)
+```
+
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(color = str_replace(color, "COLOR", "Color"),
+         color = str_replace(color, "color", "Color"),
+         color = str_replace(color, "B&W", "Black_White"),
+         color = str_replace(color, "Black and White", "Black_White"))
+
+imdb_temp |> 
+  count(color)
+```
+
+
+```{r}
+nrow(imdb_messy)
+```
+
+
+
+Exercise 6:
+```{r}
+nrow(imdb_messy)
+
+colSums(is.na(imdb_messy))
+```
+
+```{r}
+imdb_messy |> 
+  filter(is.na(actor_1_facebook_likes))
+```
+
+
+
+Exercise 7:
+```{r}
+imdb_messy |> 
+  summarize(mean(duration, na.rm = TRUE))
+```
+
+
+```{r}
+imdb_temp <- drop_na(imdb_messy)
+nrow(imdb_temp)
+```
+
+
+```{r}
+colSums(is.na(imdb_temp))
+```
+
+
+```{r}
+ggplot(imdb_messy, aes(x = duration, fill = color)) +
+  geom_density()
+```
+
+
+```{r}
+imdb_temp <- imdb_messy |> 
+  mutate(actor_1_facebook_likes =
+         replace_na(actor_1_facebook_likes, 0))
+
+imdb_temp |> 
+  summarize(sum(is.na(actor_1_facebook_likes)))
+```
+
+
+
+

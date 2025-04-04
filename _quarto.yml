@@ -30,6 +30,7 @@ book:
       - bw/bw-tri.qmd
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
+      - bw/Project1_choropleth_map.qmd
 
     # - part: "In-class Activities"
       # chapters: 
@@ -37,6 +38,18 @@ book:
       # - ica/ica-bi.qmd
       # - ica/ica-multi.qmd
       # - ica/ica-spatial.qmd
+      # - ica/ica_8_DataWrangling.qmd
+      # - ica/ica_9_Dates.qmd
+      # - ica_10_Reshaping.qmd
+      # - ica/ica_12_factors.qmd
+      # - ica/ica_13_strings.qmd
+      # - ica/ica_14_data_import.qmd
+      
+    - part: "Cheatsheet"
+      chapters:
+      - bw/Exam1_code.qmd
+      - Exam_1_Cheetsheet.qmd
+        
 
 format:
   html:

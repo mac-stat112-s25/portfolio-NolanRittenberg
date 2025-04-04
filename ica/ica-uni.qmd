@@ -9,7 +9,6 @@ Use this file for practice with the **univariate viz** in-class activity.  Refer
 
 ```{r}
 CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
-Soccer_stats = read.csv("")
 
 
 head(CA_Test_Scores)

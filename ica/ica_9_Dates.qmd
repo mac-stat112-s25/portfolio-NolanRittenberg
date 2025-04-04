@@ -1,0 +1,265 @@
+---
+title: "ica_9_Dates"
+format: html
+---
+
+```{r}
+
+library(tidyverse)
+penguins <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-07-28/penguins.csv')
+
+# Check it out
+head(penguins)
+
+```
+
+```{r}
+# Get data on only Adelie penguins that weigh more than 4700g
+
+penguins |> 
+  filter(species == "Adelie", body_mass_g > 4700) 
+
+
+# Get data on penguin body mass only
+# Show just the first 6 rows
+
+penguins |> 
+  select(body_mass_g) |>
+  head()
+
+
+# Sort the penguins from smallest to largest body mass
+# Show just the first 6 rows
+
+
+penguins |>
+  arrange(body_mass_g) |>
+  head()
+
+
+# Calculate the average body mass across all penguins
+# Note: na.rm = TRUE removes the NAs from the calculation
+
+penguins |> 
+  summarise(avg = mean(body_mass_g, na.rm = TRUE)) |> 
+  head()
+
+
+# Calculate the average body mass by species
+
+penguins |> 
+  group_by(species) |>
+  summarise(species_avg = mean(body_mass_g, na.rm = TRUE))
+
+# Create a new column that records body mass in kilograms, not grams
+# NOTE: there are 1000 g in 1 kg
+# Show just the first 6 rows
+
+penguins |> 
+  mutate(body_mass_kg = body_mass_g / 100) |>
+  head()
+
+```
+
+
+```{r}
+
+penguins |> 
+  count(species)
+
+ggplot(penguins, aes(x = species)) + 
+  geom_bar()
+
+
+```
+
+
+Exercise 1:
+
+```{r}
+
+# part a
+# Create a dataset with just Adelie and Chinstrap using %in%
+# Pipe this into `count(species)` to confirm that you only have these 2 species
+
+ penguins |> 
+   filter(species %in% c("Adelie", "Chinstrap")) |> 
+   count(species)
+
+penguins |> 
+  filter(species != "Gentoo") |>
+  count(species)
+
+# part b
+
+head(penguins)
+
+# NOTE the use of is.na()
+penguins |> 
+  summarize(sum(is.na(body_mass_g)))
+
+# NOTE the use of is.na()
+penguins_w_body_mass <- penguins |> 
+  filter(!is.na(body_mass_g))
+
+# Compare the number of penguins in this vs the original data
+nrow(penguins_w_body_mass)
+
+
+nrow(penguins)
+
+penguins_w_body_mass |> 
+  summarize(sum(is.na(sex)))
+
+penguins_complete <- penguins |> 
+  na.omit()
+
+nrow(penguins_complete)
+
+nrow(penguins)
+
+```
+Part c: 
+
+na.omit() should be used in extreme cases because it can get rid of data points even if they have complete information on the variables needed. They are missing info for variables that are not needed. 
+
+
+
+
+Exercise 2:
+
+```{r}
+
+# First: recall the variable names
+names(penguins)
+
+
+# Use a shortcut to keep everything but the year and island variables
+
+penguins |>
+  select(-year, -island)
+
+# Use a shortcut to keep only species and the penguin characteristics measured in mm
+
+penguins |>
+  select(species, flipper_length_mm)
+
+# Use a shortcut to keep only species and bill-related measurements
+
+penguins |>
+  select(species, bill_length_mm, bill_depth_mm)
+
+
+```
+
+Exercise 3:
+
+```{r}
+
+# Change this code to sort the penguins by species, and then island name
+# NOTE: The first row should be an Adelie penguin living on Biscoe island
+penguins |> 
+  arrange(species, island) |>
+  head()
+
+# Change this code to count the number of male/female penguins observed for each species
+penguins |> 
+  count(species, sex)
+
+
+
+# Change this code to calculate the average body mass by species and sex
+penguins |> 
+  group_by(species, sex) |>
+  summarize(mean = mean(body_mass_g, na.rm = TRUE))
+
+
+
+```
+
+
+
+Exercise 4:
+
+```{r}
+
+# Get today's date
+as.Date(today())
+
+
+# Let's store this as "today" so we can work with it below
+today <- as.Date(today())
+
+# Check out the class of this object
+class(today)
+
+
+year(today)
+
+
+# What do these lines produce / what's their difference?
+month(today)
+#this line produces the month number for today's date
+
+
+month(today, label = TRUE)
+
+# What does this number mean?
+week(today)
+#number week of the year for today's date
+
+
+# What do these lines produce / what's their difference?
+mday(today)
+#gives the #day of today's date
+
+
+yday(today)  # This is often called the "Julian day"
+
+
+# What do these lines produce / what's their difference?
+wday(today)
+#says the number day of the week
+
+wday(today, label = TRUE)
+
+
+# What do the results of these 2 lines tell us?
+today >= ymd("2024-02-14")
+
+
+today < ymd("2024-02-14")
+#tells whether or not the date in "" was a year ago or not
+
+```
+
+
+
+```{r}
+library(mosaic)
+data("Birthdays")
+head(Birthdays)
+
+
+# How many days of data do we have for each state?
+Birthdays |>
+  count(state)
+
+# How many total births were there in this time period?
+
+Birthdays |>
+  summarize(sum(births))
+
+# How many total births were there per state in this time period, sorted from low to high?
+
+Birthdays |>
+  mutate()
+
+```
+
+
+
+
+
+
+

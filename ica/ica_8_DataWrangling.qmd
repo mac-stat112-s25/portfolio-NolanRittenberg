@@ -1,0 +1,431 @@
+---
+title: "8_DataWrangling"
+format: html
+---
+
+```{r}
+
+# Load tidyverse & data
+library(tidyverse)
+elections <- read.csv("https://mac-stat.github.io/data/election_2020_county.csv")
+
+```
+
+```{r}
+
+# Get a background map
+library(socviz)
+data(county_map)
+
+# Make a choropleth map
+library(RColorBrewer)  # For the color scale
+library(ggthemes) # For theme_map
+elections |> 
+  mutate(county_fips = as.character(county_fips)) |> 
+  mutate(county_fips = 
+           ifelse(nchar(county_fips) == 4, paste0("0", county_fips), county_fips)) |> 
+  ggplot(aes(map_id = county_fips, fill = cut(repub_pct_20, breaks = seq(0, 100, by = 10)))) +
+    geom_map(map = county_map) +
+    scale_fill_manual(values = rev(brewer.pal(10, "RdBu")), name = "% Republican") +
+    expand_limits(x = county_map$long, y = county_map$lat)  + 
+    theme_map() +
+    theme(legend.position = "right") + 
+    coord_equal()
+
+
+```
+
+
+```{r}
+# What's the first argument? The second?
+select(elections, c(state_name, county_name, dem_pct_20, dem_pct_16))
+```
+
+```{r}
+elections |> 
+  select(state_name, county_name, dem_pct_20, dem_pct_16)
+```
+
+
+```{r}
+# Without a pipe
+filter(elections, state_name == "Minnesota")
+```
+
+
+
+```{r}
+# With a pipe
+elections |> 
+  filter(state_name == "Minnesota")
+```
+
+
+
+```{r}
+# Ex: "=" defines x
+x = 2
+x
+```
+
+
+```{r}
+# Ex: "==" checks whether x is/matches 3
+x == 3
+```
+
+
+```{r}
+# Without pipes
+filter(select(elections, c(state_name, county_name, dem_pct_20, dem_pct_16)), state_name == "Minnesota")
+
+
+# With pipes: all verbs in 1 row
+elections |> select(state_name, county_name, dem_pct_20, dem_pct_16) |> filter(state_name == "Minnesota")
+
+
+
+# With pipes: each verb in a new row
+elections |> 
+  select(state_name, county_name, dem_pct_20, dem_pct_16) |> 
+  filter(state_name == "Minnesota")
+
+
+# We can even do this with UN-tidyverse code in "base" R
+elections[elections$state_name == "Minnesota", c(1, 4, 8, 12)]
+
+```
+
+
+
+```{r}
+elections |> 
+  select(state_name, county_name, dem_pct_20, dem_pct_16) |> 
+  filter(state_name == "Minnesota")
+
+
+
+```
+
+```{r}
+
+
+# Store the results
+mn <- elections |> 
+  select(state_name, county_name, dem_pct_20, dem_pct_16) |> 
+  filter(state_name == "Minnesota")
+
+# Always check it out to confirm it's what you want it to be!
+head(mn)
+
+```
+
+
+Exercise 1:
+
+```{r}
+
+# Define elections_small
+#___ <- ___ |>
+#  ___(___)
+
+# Check out the first 6 rows to confirm your code did what you think it did!
+
+elections_small <- elections |>
+  select(state_name, county_name, total_votes_20, repub_pct_20, dem_pct_20, total_votes_16, dem_pct_16)
+
+head(elections_small)
+```
+
+
+Exercise 2:
+
+```{r}
+
+elections_small |>
+  filter(state_name == "Alabama")
+
+```
+
+
+```{r}
+elections_small |>
+  filter(state_name %in% c("Hawaii", "Delaware"))
+```
+
+```{r}
+
+# Keep only data on counties where the Republican got MORE THAN 93.97% of the vote in 2020
+# THINK: What variable is relevant here?
+
+elections_small |>
+  filter(repub_pct_20 > "93.97")
+
+# Keep only data on counties where the Republican got AT LEAST 93.97% of the vote in 2020
+
+elections_small |>
+  filter(repub_pct_20 >= "93.97")
+
+# This should have 1 more row (observation) than your answer above
+
+```
+
+
+```{r}
+
+# Keep only data on counties in Texas where the Democrat got more than 65% of the vote in 2020
+# Do this 2 ways.
+# Method 1: 2 filters with 1 condition each
+elections_small |> 
+  filter(state_name == "Texas") |> 
+  filter(dem_pct_20 > 65)
+
+# Method 2: 1 filter with 2 conditions
+elections_small |> 
+  filter(state_name == "Texas", dem_pct_20 > 65)
+
+
+
+```
+
+Exercise 3
+```{r}
+
+# Arrange the counties in elections_small from lowest to highest percentage of 2020 Republican support
+# Print out just the first 6 rows
+ 
+elections_small |>
+  arrange(desc(repub_pct_20)) |>
+  head()
+```
+
+Exercise 4
+
+Part a 
+
+```{r}
+# What did this code do?
+# This code made a new column which is the difference between repub and dem votes in 2020.
+ elections_small |> 
+   mutate(diff_20 = repub_pct_20 - dem_pct_20) |> 
+   head()
+
+
+# What did this code do?
+# This code made a new column which is the number of repub votes.
+ elections_small |> 
+   mutate(repub_votes_20 = round(total_votes_20 * repub_pct_20/100)) |> 
+   head()
+
+
+
+# What did this code do?
+# This code added a true or false column whether the repub vote won. 
+ elections_small |> 
+   mutate(repub_win_20 = repub_pct_20 > dem_pct_20) |> 
+   head()
+
+```
+
+
+Part b
+
+```{r}
+# You try
+# Define a variable that calculates the change in Dem support in 2020 vs 2016
+elections_small |> 
+  mutate(percent_change_in_dem_support = dem_pct_20 - dem_pct_16) |> 
+  head()
+
+# You try
+# Define a variable that determines whether the Dem support was higher in 2020 than in 2016 (TRUE/FALSE)
+elections_small |> 
+  mutate(increase_dem_support = dem_pct_20 > dem_pct_16) |> 
+  head()
+```
+
+
+Exercise 5
+
+Part a
+
+```{r}
+
+
+ elections_small |> 
+   filter(state_name == "Wisconsin",
+          repub_pct_20 < dem_pct_20) |> 
+   arrange(desc(total_votes_20)) |> 
+   head()
+
+
+
+```
+
+Part b
+
+```{r}
+# Now try it. Change the order of filter and arrange below.
+# elections_small |> 
+#   filter(state_name == "Wisconsin",
+#          repub_pct_20 < dem_pct_20) |> 
+#   arrange(desc(total_votes_20)) |> 
+#   head()
+```
+
+
+
+
+Exercise 6:
+```{r}
+elections_small |> 
+  filter(state_name == "Minnesota") |> 
+  select(county_name, dem_pct_20) |> 
+  arrange(desc(dem_pct_20))
+```
+
+
+```{r}
+mn_wi <- elections_small |> 
+  filter(state_name %in% c("Minnesota", "Wisconsin")) |> 
+  select(state_name, county_name, dem_pct_20, dem_pct_16) |>
+  mutate(dem_change = dem_pct_20 - dem_pct_16) |> 
+  arrange(dem_change)
+  
+# Check it out
+head(mn_wi)
+```
+
+```{r}
+ggplot(mn_wi, aes(x = dem_change, fill = state_name)) + 
+  geom_density(alpha = 0.5)
+```
+
+
+```{r}
+ggplot(mn_wi, aes(y = dem_change, x = state_name)) + 
+  geom_boxplot()
+```
+
+Exercise 7:
+
+```{r}
+# Calculate the median Repub vote percentage in 2020 across all counties
+elections_small |> 
+  summarize(median(repub_pct_20))
+
+# Calculate the median Repub vote percentage in 2020 across all counties
+# AND name it "median_repub"
+elections_small |> 
+  summarize(median_repub = median(repub_pct_20))
+
+# Calculate the median Repub vote percentage in 2020 across all counties
+# AND the total number of votes across all counties
+# AND name the results
+elections_small |> 
+  summarize(median_repub = median(repub_pct_20), total_votes = sum(total_votes_20))
+```
+
+
+Exercise 8
+
+```{r}
+# Calculate the median 2020 Repub percent and total votes BY STATE
+elections_small |> 
+  group_by(state_name) |> 
+  summarize(median_repub = median(repub_pct_20), total_votes = sum(total_votes_20)) 
+```
+
+Exercise 9:
+
+```{r}
+# Sort the states from the most to least total votes in 2020
+elections_small |> 
+  group_by(state_name) |> 
+  summarize(total = sum(total_votes_20)) |> 
+  arrange(desc(total))
+```
+
+
+```{r}
+# In 2020, what were the total number of votes for the Democratic candidate and the total number of votes for the Republican candidate in each *state*?
+elections_small |> 
+  mutate(dem_votes_20 = round(total_votes_20 * dem_pct_20 / 100), 
+         repub_votes_20 = round(total_votes_20 * repub_pct_20 / 100)) |> 
+  group_by(state_name) |> 
+  summarize(dem_total = sum(dem_votes_20),
+            repub_total = sum(repub_votes_20))
+```
+
+
+```{r}
+# What states did the Democratic candidate win in 2020?
+elections_small |> 
+  mutate(dem_votes_20 = round(total_votes_20 * dem_pct_20 / 100), 
+         repub_votes_20 = round(total_votes_20 * repub_pct_20 / 100)) |> 
+  group_by(state_name) |> 
+  summarize(dem_total = sum(dem_votes_20),
+            repub_total = sum(repub_votes_20)) |> 
+  filter(dem_total > repub_total)
+```
+
+
+Exercise 10:
+
+```{r}
+world_cup <- read.csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-11-29/worldcups.csv")
+
+# In what years did Brazil win the World Cup?
+world_cup |> 
+  filter(winner == "Brazil")
+```
+```{r}
+# What were the 6 World Cups with the highest attendance?
+world_cup |> 
+  arrange(desc(attendance)) |> 
+  head()
+```
+
+
+
+```{r}
+# Construct a univariate plot of goals_scored (no wrangling necessary)
+# This provides a visual summary of how the number of goals_scored varies from World Cup to World Cup
+ggplot(world_cup, aes(x = goals_scored)) + 
+  geom_histogram(color = "white")
+```
+
+```{r}
+# Let's follow up the plot with some more precise numerical summaries
+# Calculate the min, median, and max number of goals_scored across all World Cups
+# NOTE: Visually compare these numerical summaries to what you observed in the plot
+world_cup |> 
+  summarize(min(goals_scored), median(goals_scored), max(goals_scored))
+```
+
+
+```{r}
+# Construct a bivariate plot of how the number of goals_scored in the World Cup has changed over the years
+# No wrangling necessary
+ggplot(world_cup, aes(x = year, y = goals_scored)) + 
+  geom_point() + 
+  geom_line()
+```
+
+
+```{r}
+# Our above summaries might be a bit misleading.
+# The number of games played at the World Cup varies.
+# Construct a bivariate plot of how the typical number of goals per game has changed over the years
+per_game_data <- world_cup |> 
+  mutate(goals_per_game = goals_scored / games)
+
+ggplot(per_game_data, aes(x = year, y = goals_per_game)) + 
+  geom_point() + 
+  geom_line()
+```
+
+
+
+
+

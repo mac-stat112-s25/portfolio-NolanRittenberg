@@ -1,0 +1,108 @@
+---
+title: "Nolan Rittenberg Resume"
+author: "Nolan Rittenberg"
+format: pdf
+#  pagedown::html_resume
+#css: custom_styles.css
+---
+
+# **Nolan Rittenberg**
+*Oakland, CA • 510-789-5646 • nolan.rittenberg@icloud.com*  
+
+---
+
+## **Summary**  
+High-achieving student-athlete with a strong work ethic, resilience, and a commitment to academic and athletic excellence. Passionate about medicine, research, and leadership, seeking opportunities to further develop skills in scientific research and healthcare.
+
+---
+
+## **Education**  
+
+**Macalester College, St. Paul, MN** *(Class of 2028)*  
+- Pre-Med Track, emphasis on Genetics  
+- NCAA Division III Student-Athlete, **Macalester Men’s Soccer**  
+- **GPA:** 3.85  
+
+**Bishop O’Dowd High School, Oakland, CA** *(Class of 2024)*  
+- **GPA:** 4.01  
+- Honors: California Scholarship Federation, National Honor Society, Honor Roll (every semester) 
+
+---
+
+## **Research Experience**  
+
+**Stanford University, Department of Orthopedic Surgery**  
+*Volunteer Research Assistant (12/30/2024 – Present)*  
+- Contributed to ongoing research in orthopedic surgery, focusing on shockwave therapy. 
+- Responsible for data analysis and manuscript preparation
+- Collaborated with research professionals to gain insight into experimental methodologies and medical applications.  
+- Sharpened scientific writing, critical thinking, and data analysis skills.  
+- **CITI Trained (Collaborative Institutional Training Initiative) Certified** in human subjects research ethics and biomedical research compliance.  
+
+---
+
+## **Employment Experience**  
+
+**Self-Employed | Video Editing, Oakland, CA** *(2022 – Present)*  
+- Created professional sports highlight videos for athletes and coaches.  
+- Partnered with local trainers to recruit clients and manage project timelines.  
+- Developed proficiency in video editing software, enhancing digital media skills.  
+
+**Self-Employed | Youth Soccer Trainer, Oakland, CA** *(2021 – Present)*  
+- Provided personalized soccer training, focusing on technical skills, tactical awareness, and fitness.  
+- Mentored young athletes, fostering confidence and discipline in sports.  
+
+**Hills Swim and Tennis Club, Oakland, CA** *(May 2024 – August 2024)*  
+- Front desk customer service, assisting members and guests.  
+
+**24-7 Summer Youth Soccer Camp, Oakland, CA** *(July 2024)*  
+- Led training sessions and organized competitions for youth soccer players.  
+- Managed player engagement, ensuring a supportive and educational environment.  
+
+---
+
+## **Volunteer Experience**  
+
+**Oakland Parks and Rec Camp, Franklin Recreation Center** *(June 2022)*  
+- Dedicated **60 hours** to mentoring and supervising children in summer programs.  
+- Organized activities, ensuring a fun and educational experience for campers.  
+
+**Bladium Alameda, 24-7 UK Soccer Academy** *(July 2021)*  
+- Coached groups of young athletes, facilitating drills, games, and teamwork exercises.  
+- Developed conflict resolution and leadership skills while managing youth teams.  
+
+---
+
+## **Athletics**  
+
+- **Ballistic United MLS Next U17-U19, Bay Area** (2022-2024)  
+- **Macalester College Men’s Soccer** (2024-Present)  
+- **Bishop O’Dowd High School Varsity Soccer** (2020-2024)  
+- **Olympic Development Program Cal North (Soccer)** (2019-2022)  
+- **Association Football Club (Team Captain)** (2018-2022)  
+- **Certified Referee (U.S. Soccer Federation)**  
+
+---
+
+## **Skills & Certifications**  
+
+**Technical Skills:**  
+- Video Editing & Digital Media  
+- Data Analysis & Visualization  
+- R Programming & Scientific Data Management  
+- Computer Applications  
+
+**Certifications:**  
+- **CITI Trained (Collaborative Institutional Training Initiative)** – Biomedical Research Compliance & Human Subjects Research Ethics  
+- **U.S. Soccer Federation Certified Referee**  
+
+**Soft Skills:**  
+- Leadership & Teamwork  
+- Communication & Adaptability  
+- Time Management & Conscientiousness  
+
+**Interests:**  
+- Sports Medicine & Orthopedic Research  
+- Soccer & Athletics  
+- Entrepreneurship & Technology  
+- Science & Medicine  
