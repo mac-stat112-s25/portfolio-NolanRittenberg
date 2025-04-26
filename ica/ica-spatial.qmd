@@ -6,8 +6,8 @@ Use this file for practice with the **spatial viz** in-class activity.  Refer to
 
 
 ```{r}
-install.packages(c("sf", "maps", "RColorBrewer", "gplots", "socviz", "leaflet", "devtools"))
-devtools::install_github("ropensci/rnaturalearthhires")
+#install.packages(c("sf", "maps", "RColorBrewer", "gplots", "socviz", "leaflet", "devtools"))
+#devtools::install_github("ropensci/rnaturalearthhires")
 ```
 
 
@@ -311,13 +311,13 @@ elections_by_counties <- elections_by_counties |>
 
 
 ```{r}
-ggplot(elections_by_counties, aes(map_id = county_fips, fill = repub_20_categories)) +
-  geom_map(map = county_map) +
-  scale_fill_manual(values = rev(brewer.pal(10, "RdBu")), name = "% Republican") +
-  expand_limits(x = county_map$long, y = county_map$lat) +
-  theme_map() +
-  theme(legend.position = "right") + 
-  coord_equal()
+# ggplot(elections_by_counties, aes(map_id = county_fips, fill = repub_20_categories)) +
+#   geom_map(map = county_map) +
+#   scale_fill_manual(values = rev(brewer.pal(10, "RdBu")), name = "% Republican") +
+#   expand_limits(x = county_map$long, y = county_map$lat) +
+#   theme_map() +
+#   theme(legend.position = "right") + 
+#   coord_equal()
 ```
 
 

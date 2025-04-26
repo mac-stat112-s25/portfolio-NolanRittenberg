@@ -1,0 +1,163 @@
+---
+title: "Exam 2"
+execute:
+  echo: true
+  warning: false
+  error: false
+
+format: 
+  html: 
+    code-fold: true
+---
+
+
+
+```{r}
+
+library(tidyverse)
+library(tidytuesdayR)
+library(rnaturalearth)
+library(sf)
+
+
+```
+
+
+```{r}
+
+# read_csv("food_consumption.csv")
+
+tuesdata <- tt_load('2020-02-18')
+
+fc <- tuesdata$food_consumption
+
+```
+
+
+
+```{r}
+str(fc)
+```
+
+```{r}
+head(fc, 22)
+```
+
+
+```{r}
+
+fc_food_cat <- fc |>
+  distinct(food_category)
+  
+fc_food_cat
+
+
+# Problem: The food category names are too long. 
+
+```
+
+
+
+```{r}
+
+fc_concise <- fc |>
+  mutate(food_category = fct_recode(food_category,
+                                    "Dairy" = "Milk - inc. cheese",
+                                    "Wheat" = "Wheat and Wheat Products",
+                                    "Nuts" = "Nuts inc. Peanut Butter",
+                                    "Lamb" = "Lamb & Goat"))
+                                  
+
+head(fc_concise, 12)
+
+
+```
+
+
+```{r}
+country_consumption <- fc |>
+  group_by(country) |>
+  summarise(total_consumption = sum(consumption)) |> 
+  arrange(desc(total_consumption)) |>
+  slice_head(n = 5)
+
+head(country_consumption)
+```
+
+```{r}
+
+ggplot(country_consumption, aes(x = country, y = total_consumption, fill = country)) +
+  geom_col() + 
+  scale_fill_viridis_d()
+  
+```
+
+
+```{r}
+
+country_category_consumption <- fc |>
+  select(country, food_category, consumption) |>
+  group_by(food_category) |>
+  slice_max(order_by = consumption, n = 5) |>
+  arrange(food_category, 
+          desc(consumption))
+
+country_category_consumption
+```
+
+
+```{r, fig.height=11, fig.width=18}
+
+
+
+
+
+ggplot(country_category_consumption, aes(x = consumption, y = country)) + 
+  facet_wrap(~food_category, scales = "free_y") +
+  geom_col() + 
+  labs(
+    title = "Each Food Category's Top 5 Consumer Countries",
+    subtitle = "By: Nolan Rittenberg", 
+    caption = "2025"
+  ) + 
+  theme(
+    plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 15, hjust = 0.5)
+  )
+
+# Had to do online research to figure out how to only show the top 5 values in each faceted graph. This is how I know to use "free_y"
+
+```
+
+
+
+
+
+
+```{r}
+
+ne_countries(returnclass = "sf") |> 
+  select(name, geometry) |>
+  mutate(name = ifelse(name == "United States of America", "USA", name)) |>
+  mutate(name = ifelse(name == "Bosnia and Herz.", "Bosnia and Herzegovina", name)) |>
+  mutate(name = ifelse(name == "Czechia", "Czech Republic", name)) |>
+  mutate(name = ifelse(name == "Taiwan", "Taiwan. ROC", name)) |>
+  left_join(
+    fc_concise |> select(-co2_emmission), 
+            join_by(name == country)) |>
+  pivot_wider(names_from = food_category,
+              values_from = consumption) |>
+  # select("-NA") |>
+  pivot_longer(cols = c(-name, -geometry),
+               names_to = "food_category",
+               values_to = "consumption") |>
+  ggplot() + 
+  geom_sf(aes(fill = consumption)) + 
+  facet_wrap(~food_category) + 
+  theme(legend.position = "bottom")
+
+```
+
+
+
+

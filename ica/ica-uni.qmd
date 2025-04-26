@@ -1,5 +1,5 @@
 ---
-title: "Best Work Practice"
+title: "Univariate Viz"
 ---
 
 Use this file for practice with the **univariate viz** in-class activity.  Refer to the class website for details.
@@ -13,6 +13,7 @@ CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AE
 
 head(CA_Test_Scores)
 
+library(tidyverse)
 ```
 
 

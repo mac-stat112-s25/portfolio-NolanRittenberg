@@ -1,5 +1,5 @@
 ---
-title: "8_DataWrangling"
+title: "Data Wrangling"
 format: html
 ---
 
@@ -38,18 +38,22 @@ elections |>
 
 ```{r}
 # What's the first argument? The second?
-select(elections, c(state_name, county_name, dem_pct_20, dem_pct_16))
+select(elections, c(state_name, county_name, dem_pct_20, dem_pct_16)) |>
+  head()
+
 ```
 
 ```{r}
 elections |> 
-  select(state_name, county_name, dem_pct_20, dem_pct_16)
+  select(state_name, county_name, dem_pct_20, dem_pct_16) |>
+  head()
 ```
 
 
 ```{r}
 # Without a pipe
-filter(elections, state_name == "Minnesota")
+filter(elections, state_name == "Minnesota") |>
+  head()
 ```
 
 
@@ -57,7 +61,8 @@ filter(elections, state_name == "Minnesota")
 ```{r}
 # With a pipe
 elections |> 
-  filter(state_name == "Minnesota")
+  filter(state_name == "Minnesota") |>
+  head()
 ```
 
 
@@ -101,7 +106,8 @@ elections[elections$state_name == "Minnesota", c(1, 4, 8, 12)]
 ```{r}
 elections |> 
   select(state_name, county_name, dem_pct_20, dem_pct_16) |> 
-  filter(state_name == "Minnesota")
+  filter(state_name == "Minnesota") |>
+  head()
 
 
 
@@ -143,7 +149,8 @@ Exercise 2:
 ```{r}
 
 elections_small |>
-  filter(state_name == "Alabama")
+  filter(state_name == "Alabama") |>
+  head()
 
 ```
 

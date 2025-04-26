@@ -1,11 +1,14 @@
 ---
 title: "Bivariate Viz"
-execute: 
+execute:
+  echo: true
   warning: false
   error: false
----
 
-Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.
+format: 
+  html: 
+    code-fold: true
+---
 
 
 
@@ -22,18 +25,18 @@ ggplot(CA_Test_Scores, aes(x = income, y = math)) +
   labs(title = "California: Income vs. Standardized Math Test Scores",
        x = "Income",
        y = "Math Test Score",
-       caption = "Created By: Nolan Rittenberg") +
+       caption = "By: Nolan Rittenberg | 2025\nsource: CASchools dataset from the AER package. Accessed via Rdatasets: Vincent Arel-Bundock (https://vincentarelbundock.github.io/Rdatasets)") +
   theme(
-    panel.background = element_rect(fill = "grey", color = "grey"),
-    plot.background = element_rect(fill = "grey", color = "grey"),
-    legend.background = element_rect(fill = "grey", color = "grey")
+    panel.background = element_rect(fill = "white", color = "white"),
+    plot.background = element_rect(fill = "white", color = "white"),
+    legend.background = element_rect(fill = "white", color = "white"),
+    plot.caption = element_text(size = 7, hjust = 0),
+    plot.title = element_text(size = 12, hjust = 0.5)
     )
   
 
 ```
-:::
-This is a bivariate graph that shows the correlation between household income and standardized math test scores in the state of California. Both variables are numerical. From this graph, it can be concluded that lower household income is correlated with a lower standardized math test score.
-:::
+
 
 
 ```{r}
@@ -51,12 +54,19 @@ new_bechdel <- bechdel |>
 ggplot(new_bechdel, aes(x = half_decades, fill = clean_test)) + 
   geom_bar(position = "dodge") +
   scale_color_viridis_b() +
- theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    plot.title = element_text(size = 12, hjust = 0.5),
+    plot.caption = element_text(hjust = 0, size = 7),
+
+) +
   labs(
     title = "New Bechdel Test Over The Past 45 Years",
-       x = "Years",
-       y = "Number of Movies",
-       caption = "Created By: Nolan Rittenberg")
+    x = "Years",
+    y = "Number of Movies",
+    fill = "Clean Test",
+    caption = "By: Nolan Rittenberg | 2025\nFiveThirtyEight — 'The Dollar-And-Cents Case Against Hollywood’s Exclusion of Women'")
 ```
 
 

@@ -1,11 +1,11 @@
 ---
-title: "ica_14_data_import"
+title: "Data Import"
 format: html
 ---
 
 ```{r}
 library(tidyverse)
-my_data <- read_csv("~/Desktop/Stanford Research/ESWT Data Analysis.csv")
+#my_data <- read_csv("~/Desktop/Stanford Research/ESWT Data Analysis.csv")
 ```
 
 

@@ -1,13 +1,19 @@
 ---
 title: "Quadvariate Viz"
+execute:
+  echo: true
+  warning: false
+  error: false
+
+format: 
+  html: 
+    code-fold: true
 ---
-
-Use this file to generate a professional looking **quadvariate** visualization.  The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
-
-
 
 
 ```{r}
+#| fig-alt: "The title of this graph is, Income vs. Standardized Reading and Math Test Scores For Grade Level, KK-06 and KK-08 In California Schools. The x-axis represents income, the y axis represents math score, and the color represents reading score. The color gradient goes from gold to blue. Gold represents a lower score and blue represents a higher score. This graph was created in 2025 by Nolan Rittenberg"
+
 library(tidyverse)
 
 CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
@@ -17,21 +23,26 @@ ggplot(CA_Test_Scores, aes(x = income, y = math, color = read)) +
   facet_wrap(~grades) +
   scale_color_gradient(low = "gold", high = "blue") + 
   theme_bw() +
-  labs(title = "Income vs. Standardized Reading and Math Test Scores For Grade Level, KK-06 and KK-08 In California Schools",
+  labs(title = "CA Schools: Income vs. Standardized Reading and Math Test Scores by Grade Level (KK-06 and KK-08)",
        x = "Income",
        y = "Math Score",
        color = "Reading Score",
-       caption = "Created By: Nolan Rittenberg",
+       caption = "By: Nolan Rittenberg | 2025\nsource: CASchools dataset from the AER package. Accessed via Rdatasets: Vincent Arel-Bundock (https://vincentarelbundock.github.io/Rdatasets)",
        ) +
     theme(
-    panel.background = element_rect(fill = "grey", color = "grey"),
-    plot.background = element_rect(fill = "grey", color = "grey"),
-    legend.background = element_rect(fill = "grey", color = "grey"),
-    plot.title = element_text(size = 9) 
+    panel.background = element_rect(fill = "white", color = "white"),
+    plot.background = element_rect(fill = "white", color = "white"),
+    legend.background = element_rect(fill = "white", color = "white"),
+    plot.title = element_text(size = 10, face = "bold", hjust = 0.2),
+    plot.caption = element_text(size = 7, hjust = 0), 
+    axis.title = element_text(size = 10, face = "bold"),
+    axis.text = element_text(size = 10, face = "bold"),
+    strip.text = element_text(size = 8),
+    legend.title = element_text(size = 10, face = "bold")
     )
-  
 
 ```
+
 
 
 

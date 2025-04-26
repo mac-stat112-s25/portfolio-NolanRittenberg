@@ -1,0 +1,8 @@
+---
+title: "Wrangling"
+format: html
+---
+
+My *Cheat Sheet* for Exam 2 STAT112 ![](exam2cheatsheet.png)
+
+

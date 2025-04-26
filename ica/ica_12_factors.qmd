@@ -1,5 +1,5 @@
 ---
-title: "ica_12_factors"
+title: "Factors"
 format: html
 ---
 

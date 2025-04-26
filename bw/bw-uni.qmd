@@ -1,11 +1,14 @@
 ---
 title: "Univariate Viz"
-execute: 
+execute:
+  echo: true
   warning: false
   error: false
----
 
-Use this file to generate a professional looking **univariate** visualization. The visualization will not perfect the first time but you are expected to improve on it throughout the semester especially after covering advanced topics such as effective viz.
+format: 
+  html: 
+    code-fold: true
+---
 
 
 
@@ -14,17 +17,15 @@ Use this file to generate a professional looking **univariate** visualization. T
 library(ggplot2)
 
 simpsons_episodes = read.csv("/Users/nrittenberg24/Desktop/simpsons_episodes.csv")
-head(simpsons_episodes)
-dim(simpsons_episodes)
 
 
 ggplot(simpsons_episodes, aes(x = imdb_rating)) + 
   geom_density(fill = "yellow", color = "yellow", size = 0, alpha = 0.9) + 
-  theme_classic() +
+  theme_minimal() +
   labs(title = "                       IMDB Ratings of Individual Simpsons Epidodes",
        x = "IMDB Rating",
        y = "Percentage of Episodes",
-       caption = "Created By: Nolan Rittenberg") +
+       caption = "Created By: Nolan Rittenberg | 2025\nFiveThirtyEight — 'The Simpsons by the Data'") +
   theme(
     plot.title = element_text(color = "black", size = 14, face = "bold"),  
     axis.title.x = element_text(color = "black", size = 12, face = "bold"), 

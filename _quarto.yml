@@ -30,25 +30,28 @@ book:
       - bw/bw-tri.qmd
       - bw/bw-quad.qmd
       - bw/bw-spatial.qmd
-      - bw/Project1_choropleth_map.qmd
+      - bw/Solo Project.qmd
+      - bw/Exam 1.qmd
+      - bw/Food_Consumption_2(Exam_2).qmd
 
-    # - part: "In-class Activities"
-      # chapters: 
-      # - ica/ica-uni.qmd
-      # - ica/ica-bi.qmd
-      # - ica/ica-multi.qmd
-      # - ica/ica-spatial.qmd
-      # - ica/ica_8_DataWrangling.qmd
-      # - ica/ica_9_Dates.qmd
-      # - ica_10_Reshaping.qmd
-      # - ica/ica_12_factors.qmd
-      # - ica/ica_13_strings.qmd
-      # - ica/ica_14_data_import.qmd
-      
-    - part: "Cheatsheet"
+
+    - part: "In-class Activities"
       chapters:
-      - bw/Exam1_code.qmd
+      - ica/ica-uni.qmd
+      - ica/ica-bi.qmd
+      - ica/ica-multi.qmd
+      - ica/ica-spatial.qmd
+      - ica/ica_8_DataWrangling.qmd
+      - ica/ica_9_Dates.qmd
+      - ica/ica_10_Reshaping.qmd
+      - ica/ica_12_factors.qmd
+      - ica/ica_13_strings.qmd
+      - ica/ica_14_data_import.qmd
+      
+    - part: "Summary Sheet"
+      chapters:
       - Exam_1_Cheetsheet.qmd
+      - bw/Wrangling_Cheatsheet.qmd
         
 
 format:
@@ -67,7 +70,7 @@ format:
 
 execute:
   cache: false
-  freeze: auto
+  freeze: false
 
 editor: 
   markdown:

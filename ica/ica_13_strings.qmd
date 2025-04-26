@@ -1,5 +1,5 @@
 ---
-title: "ica_13_strings"
+title: "Strings"
 format: html
 ---
 

@@ -1,0 +1,98 @@
+---
+title: "Solo Project"
+execute:
+  echo: true
+  warning: false
+  error: false
+
+format: 
+  html: 
+    code-fold: true
+---
+
+```{r}
+
+library(tidyverse)
+library(sf)
+library(rnaturalearth)
+
+```
+
+
+
+```{r}
+
+covid_in_italy <- read_csv("~/Documents/portfolio-NolanRittenberg/bw/covid19_italy_province.csv")
+
+covid_in_italy_per_region <- covid_in_italy |>
+  group_by(RegionName) |>
+  summarise(region_cases = n())
+  
+```
+
+```{r}
+italy_shape_file <- read_sf("georef-italy-provincia/georef-italy-provincia-millesime.shp")
+
+italy_map <- ne_states(returnclass = "sf", country = "Italy")
+
+covid_in_italy_per_shape <- italy_shape_file |>
+  left_join(covid_in_italy_per_region, join_by(reg_name == RegionName))
+  
+  
+ggplot(covid_in_italy_per_shape) + 
+  geom_sf(
+    aes(fill = region_cases),
+    color = "#f0f0f0",
+    size = 0.1
+  ) +
+  scale_fill_gradient(
+    low = "pink",
+    high = "darkred",
+    name = "Total Number of
+COVID-19 Cases"
+  ) + 
+  labs(title = "Amount of COVID-19 Cases Per Province In Italy (2022)", 
+       subtitle = "Grey = N/A", 
+       caption = "
+       
+       By: Nolan Rittenberg | 2025\n
+       Source: Italian Civil Protection Department, COVID-19 data repository (https://github.com/pcm-dpc/COVID-19)") + 
+  theme_minimal() + 
+  theme(
+  plot.title = element_text(hjust = 0.3, face = "bold"), 
+  plot.subtitle = element_text(hjust = 0.5), 
+  plot.caption = element_text(hjust = 0.001, size = 7),
+  plot.margin = margin(t = 10, r = 10, b = 20, l = 10)
+)
+
+# region_cases are NA for the provinces, Bolzano and Trento. This dataset does not have data for the covid cases in Bolzano and Trento. 
+
+```
+
+In the Year 2022, Italy was hit hard by COVID-19, being at the forefront of Europe's ongoing challenge with COVID-19. The most common areas and provinces for tourism in Italy are very similar to the areas and provinces that had the highest amount of COVID-19 cases. Tourism is a large part of Italy's economy, which makes the implication of COVID-19 regulations particularly challenging. In 2022, Italy understandably decreased their COVID-19 travel regulations however, this led to a serious increase in the number of COVID-19 cases because the most affected areas by COVID-19 were also the most visited areas by tourists. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
