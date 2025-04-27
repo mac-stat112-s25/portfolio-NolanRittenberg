@@ -343,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-21"><a href="#cb1-21"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<figure class="figure"><p><img src="bw-tri_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<figure class="figure"><p><img src="bw-tri_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" alt="The title of this graph is, Which Seasons of the Simpsons Have the Most Views and Highest Ratings. The x-axis represents views, the y axis represents IMDB rating, and the color represents the season. Yellow represents seasons twenty and above, blue represents seasons eleven to twenty, and purple represents seasons ten and below. This graph was created in 2025 by Nolan Rittenberg" width="672"></p>
 </figure>
 </div>
 </div>
@@ -999,30 +999,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-14"><a href="#cb2-14"></a></span>
 <span id="cb2-15"><a href="#cb2-15"></a></span>
 <span id="cb2-18"><a href="#cb2-18"></a><span class="in">```{r}</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>simpsons_episodes <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"/Users/nrittenberg24/Desktop/simpsons_episodes.csv"</span>)</span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#| fig-alt: "The title of this graph is, Which Seasons of the Simpsons Have the Most Views and Highest Ratings. The x-axis represents views, the y axis represents IMDB rating, and the color represents the season. Yellow represents seasons twenty and above, blue represents seasons eleven to twenty, and purple represents seasons ten and below. This graph was created in 2025 by Nolan Rittenberg"</span></span>
 <span id="cb2-20"><a href="#cb2-20"></a></span>
-<span id="cb2-21"><a href="#cb2-21"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>simpsons_episodes <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"/Users/nrittenberg24/Desktop/simpsons_episodes.csv"</span>)</span>
 <span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-25"><a href="#cb2-25"></a></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">ggplot</span>(simpsons_episodes, <span class="fu">aes</span>(<span class="at">x =</span> views, <span class="at">y =</span> imdb_rating, <span class="at">color =</span> season)) <span class="sc">+</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>  <span class="fu">scale_color_viridis_b</span>() <span class="sc">+</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Which Seasons of The Simpsons Have the Most Views and Highest Ratings?"</span>,</span>
-<span id="cb2-30"><a href="#cb2-30"></a>      <span class="at">x =</span> <span class="st">"Views"</span>,</span>
-<span id="cb2-31"><a href="#cb2-31"></a>      <span class="at">y =</span> <span class="st">"IMDB Rating"</span>,</span>
-<span id="cb2-32"><a href="#cb2-32"></a>      <span class="at">caption =</span> <span class="st">"By: Nolan Rittenberg | 2025</span><span class="sc">\n</span><span class="st">FiveThirtyEight — 'The Simpsons by the Data'"</span>) <span class="sc">+</span> </span>
-<span id="cb2-33"><a href="#cb2-33"></a>   <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a>  <span class="fu">theme</span>(</span>
-<span id="cb2-35"><a href="#cb2-35"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>),</span>
-<span id="cb2-36"><a href="#cb2-36"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>),</span>
-<span id="cb2-37"><a href="#cb2-37"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>),</span>
-<span id="cb2-38"><a href="#cb2-38"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">7</span>),</span>
-<span id="cb2-39"><a href="#cb2-39"></a>    )</span>
-<span id="cb2-40"><a href="#cb2-40"></a></span>
-<span id="cb2-41"><a href="#cb2-41"></a></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="in">```</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a></span>
+<span id="cb2-25"><a href="#cb2-25"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-26"><a href="#cb2-26"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-27"><a href="#cb2-27"></a></span>
+<span id="cb2-28"><a href="#cb2-28"></a><span class="fu">ggplot</span>(simpsons_episodes, <span class="fu">aes</span>(<span class="at">x =</span> views, <span class="at">y =</span> imdb_rating, <span class="at">color =</span> season)) <span class="sc">+</span></span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="fu">scale_color_viridis_b</span>() <span class="sc">+</span></span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-31"><a href="#cb2-31"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Which Seasons of The Simpsons Have the Most Views and Highest Ratings?"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32"></a>      <span class="at">x =</span> <span class="st">"Views"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33"></a>      <span class="at">y =</span> <span class="st">"IMDB Rating"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34"></a>      <span class="at">caption =</span> <span class="st">"By: Nolan Rittenberg | 2025</span><span class="sc">\n</span><span class="st">FiveThirtyEight — 'The Simpsons by the Data'"</span>) <span class="sc">+</span> </span>
+<span id="cb2-35"><a href="#cb2-35"></a>   <span class="fu">theme_dark</span>() <span class="sc">+</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-37"><a href="#cb2-37"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb2-38"><a href="#cb2-38"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb2-39"><a href="#cb2-39"></a>    <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"white"</span>),</span>
+<span id="cb2-40"><a href="#cb2-40"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">size =</span> <span class="dv">7</span>),</span>
+<span id="cb2-41"><a href="#cb2-41"></a>    )</span>
+<span id="cb2-42"><a href="#cb2-42"></a></span>
+<span id="cb2-43"><a href="#cb2-43"></a></span>
+<span id="cb2-44"><a href="#cb2-44"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
