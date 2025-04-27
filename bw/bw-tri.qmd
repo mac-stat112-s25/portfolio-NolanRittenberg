@@ -14,6 +14,8 @@ format:
 
 
 ```{r}
+#| fig-alt: "The title of this graph is, Which Seasons of the Simpsons Have the Most Views and Highest Ratings. The x-axis represents views, the y axis represents IMDB rating, and the color represents the season. Yellow represents seasons twenty and above, blue represents seasons eleven to twenty, and purple represents seasons ten and below. This graph was created in 2025 by Nolan Rittenberg"
+
 simpsons_episodes = read.csv("/Users/nrittenberg24/Desktop/simpsons_episodes.csv")
 
 

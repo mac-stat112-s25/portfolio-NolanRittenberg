@@ -42,7 +42,8 @@ favorite_stp <- tribble(
 
 
 ```{r}
-# Load the leaflet package
+#| fig-alt: "The title of this graph is, Nolan Rittenberg's Favorite Places in the World. Each dot represents one of Nolan's favorite places. The blue dots represent Nolan's top three favorite places and the blue dots represent Nolan's favorite places that are not in his top three. This graph was created in 2025 by Nolan Rittenberg"
+
 library(leaflet)
 
 color_palette <- colorFactor(

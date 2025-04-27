@@ -31,6 +31,8 @@ covid_in_italy_per_region <- covid_in_italy |>
 ```
 
 ```{r}
+
+
 italy_shape_file <- read_sf("georef-italy-provincia/georef-italy-provincia-millesime.shp")
 
 italy_map <- ne_states(returnclass = "sf", country = "Italy")

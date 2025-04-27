@@ -13,6 +13,8 @@ format:
 
 
 ```{r}
+#| fig-alt: "The title of this graph is, IMDB Ratings of Individual Simpsons Episodes. The x-axis represents IMDB Rating and the y axis represents frequency. This graph was created in 2025 by Nolan Rittenberg"
+
 
 library(ggplot2)
 

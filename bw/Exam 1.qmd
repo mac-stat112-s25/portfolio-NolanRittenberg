@@ -56,23 +56,23 @@ Part 7:
 - The variables are, food_category (categorical), country (categorical), and consumption
 
 ```{r}
-ggplot(fc, aes(y = food_category)) + 
-  geom_bar() + 
-   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# ggplot(fc, aes(y = food_category)) + 
+#   geom_bar() + 
+#    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 # bad bar graph, however for univariate categorical data, a bar graph is optimal. This graph shows that there is the same amount of every food category. 
 
 ```
 ```{r, fig.height=15, fig.width=15}
-ggplot(fc, aes(x = country)) + 
-  geom_bar()
+# ggplot(fc, aes(x = country)) + 
+#   geom_bar()
 
 # As discussed in class, the visualizations for countries would be very difficult to produce because of the very high number of countries in the dataset. 
 # Simmilar to the previous graph, this is a univariate categorical visualization, so a bar graph would be best to use. 
 ```
 
 ```{r}
-ggplot(fc, aes(x = consumption)) + 
-  geom_density()
+# ggplot(fc, aes(x = consumption)) + 
+#   geom_density()
 
 # Consumption is a numerical value. The best univariate plot for a numerical variable is a density graph or histogram. However, this graph does not tell a good story. 
 ```
@@ -80,26 +80,26 @@ ggplot(fc, aes(x = consumption)) +
 Part 8:
 Overall Food Consumption / Food Category
 ```{r}
-ggplot(fc, aes(x = food_category, y = consumption)) + 
-  geom_boxplot() + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# ggplot(fc, aes(x = food_category, y = consumption)) + 
+#   geom_boxplot() + 
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # This graph is better than the previous graphs. It is a bivariate graph with one categorical variable and one numberical variable. 
 ```
 
 Overall Food Consumption / Country
 ```{r, fig.height=22, fig.width=11}
-ggplot(fc, aes(y = country, x = consumption)) + 
-  geom_boxplot() + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+# ggplot(fc, aes(y = country, x = consumption)) + 
+#   geom_boxplot() + 
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # This graph is not good because there is a very large number of countries. This makes it almost impossible to interpret the graph. However, a boxplot is the optimal graph in this situation because the goal is to visualize a numerical variable and categorical variable in a bivariate visualization. If there was more space for the graph to occupy it would be more effective.
 ```
 
 Part 9:
 ```{r, fig.height=15, fig.width=15}
-ggplot(fc, aes(fill = consumption, x = food_category, y = country)) + 
-  geom_tile()
+# ggplot(fc, aes(fill = consumption, x = food_category, y = country)) + 
+#   geom_tile()
 
 # This graph is not effective because there is not enough screen space on the computer to fit all countries. 
 ```
@@ -154,6 +154,10 @@ ggplot(fc, aes(x = food_category, y = consumption, fill = food_category)) +
 
 
 ```{r, fig.height=22, fig.width=11}
+#| fig-alt: "What does the consumption of each food category in each country look like? The x-axis represents consumption, the y axis represents country, and the color represents the food category. Yellow represents wheat and wheat products, very light green represents soybeans, light green represents rice, green represents poultry, dark green represents pork, teal represents nuts inc. peanut butter, dark teal represents milk inc. cheese, very dark teal represents lamb and goat, dark blue represents fish, purple represents eggs, and dark purple represents beef. 
+#| 
+#|  Yellow represents seasons twenty and above, blue represents seasons eleven to twenty, and purple represents seasons ten and below. This graph was created in 2025 by Nolan Rittenberg"
+
 
 ggplot(fc, aes(x = consumption, y = country, fill = food_category)) + 
   geom_bar(stat = "identity") + 
@@ -161,8 +165,10 @@ ggplot(fc, aes(x = consumption, y = country, fill = food_category)) +
   scale_fill_viridis_d() +
   labs(
     title = "What does the consumption of each food category in each country look like?",
-    subtitle = "By: Nolan Rittenberg", 
-    caption = "2025"
+    subtitle = "By: Nolan Rittenberg (2025)",
+    fill = "Food Category", 
+    x = "Consumption",
+    y = "Country"
   )
    
 

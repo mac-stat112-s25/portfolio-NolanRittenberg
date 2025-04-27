@@ -85,10 +85,23 @@ head(country_consumption)
 ```
 
 ```{r}
+#| fig-alt: "The title of this graph is, 5 That Countries Consume the Most Food. The x axis represents Country and the y axis represents total consumption. Purple represents Albania, blue represents Finland, teal represents Lithuania, green represents the Netherlands, and yellow represents Sweden. This graph was created by Nolan Rittenberg in 2025."
 
 ggplot(country_consumption, aes(x = country, y = total_consumption, fill = country)) +
   geom_col() + 
-  scale_fill_viridis_d()
+  scale_fill_viridis_d() + 
+  labs(
+    title = "5 That Countries Consume the Most Food",
+    subtitle = "By: Nolan Rittenberg (2025)",
+    x = "Country",
+    y = "Total Consumption",
+    fill = "Country"
+  ) + 
+  theme(
+    plot.title = element_text(hjust = 0.5), 
+    plot.subtitle = element_text(hjust = 0.5)
+  ) + 
+  theme_bw()
   
 ```
 
@@ -107,7 +120,7 @@ country_category_consumption
 
 
 ```{r, fig.height=11, fig.width=18}
-
+#| fig-alt: "The title of this graph is, Each Food Category's Top 5 Consumer Countries. The x axis represents consumption, the y axis represents country, and each faceted graph represents a different food category. This graph was created by Nolan Rittenberg in 2025."
 
 
 
@@ -117,13 +130,15 @@ ggplot(country_category_consumption, aes(x = consumption, y = country)) +
   geom_col() + 
   labs(
     title = "Each Food Category's Top 5 Consumer Countries",
-    subtitle = "By: Nolan Rittenberg", 
-    caption = "2025"
+    subtitle = "By: Nolan Rittenberg (2025)", 
+    x = "Consumption",
+    y = "Country"
   ) + 
   theme(
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.subtitle = element_text(size = 15, hjust = 0.5)
-  )
+  ) + 
+  theme_bw()
 
 # Had to do online research to figure out how to only show the top 5 values in each faceted graph. This is how I know to use "free_y"
 
@@ -135,6 +150,7 @@ ggplot(country_category_consumption, aes(x = consumption, y = country)) +
 
 
 ```{r}
+#| fig-alt: "This visualization is a set of faceted choropleth maps with each represent a different food category. The blue gradient represents amount of consumption. Dark blue represents a lower amount of consumption and light blue represents a higher amount of consumption. This visualization was created by Nolan Rittenberg in 2025."
 
 ne_countries(returnclass = "sf") |> 
   select(name, geometry) |>
@@ -154,7 +170,17 @@ ne_countries(returnclass = "sf") |>
   ggplot() + 
   geom_sf(aes(fill = consumption)) + 
   facet_wrap(~food_category) + 
-  theme(legend.position = "bottom")
+  theme(legend.position = "bottom") + 
+  labs(
+    title = "Density of Consumption by Food Category ( Faceted Choropleth Maps)", 
+    subtitle = "By: Nolan Rittenberg", 
+    fill = "Consumption"
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5), 
+    plot.subtitle = element_text(hjust = 0.5)
+  ) + 
+  theme_bw()
 
 ```
 

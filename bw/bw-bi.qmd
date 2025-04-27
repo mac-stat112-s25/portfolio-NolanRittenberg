@@ -14,6 +14,8 @@ format:
 
 
 ```{r}
+#| fig-alt: "The title of this graph is, California: Income vs. Standardized Math Test Scores. The x-axis represents Income and the y axis represents Math Test Score. This graph was created in 2025 by Nolan Rittenberg"
+
 library(tidyverse)
 
 CA_Test_Scores = read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/AER/CASchools.csv")
