@@ -510,16 +510,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The other visualizations I would try this research question are a map or a facet wraped bar graph. A choropleth map would be best because each country could be shaded a different color based on the amount of consumption.</p>
 <p>Part 10: At least five effective viz concepts for this research question: 1. captions 2. color blind friendly 3. alternative text 4. aesthetically pleasing theme/style 5. labeled axes 6. title 7. source</p>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(fc, <span class="fu">aes</span>(<span class="at">fill =</span> food_category, <span class="at">y =</span> consumption, <span class="at">x =</span> food_category)) <span class="sc">+</span> </span>
-<span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb29-3"><a href="#cb29-3"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span> </span>
-<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div>
-<figure class="figure"><p><img src="Exam-1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1440"></p>
-</figure>
-</div>
-</div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># </span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="co"># ggplot(fc, aes(fill = food_category, y = consumption, x = food_category)) + </span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">#   geom_boxplot() + </span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="co">#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + </span></span>
+<span id="cb29-5"><a href="#cb29-5"></a><span class="co">#   theme_minimal()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(fc, <span class="fu">aes</span>(<span class="at">x =</span> food_category, <span class="at">y =</span> consumption, <span class="at">fill =</span> food_category)) <span class="sc">+</span> </span>
@@ -538,7 +534,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-14"><a href="#cb30-14"></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),  </span>
 <span id="cb30-15"><a href="#cb30-15"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">15</span>)),  </span>
 <span id="cb30-16"><a href="#cb30-16"></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)) </span>
-<span id="cb30-17"><a href="#cb30-17"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-17"><a href="#cb30-17"></a>  ) <span class="sc">+</span> </span>
+<span id="cb30-18"><a href="#cb30-18"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
 <figure class="figure"><p><img src="Exam-1_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1440"></p>
@@ -1324,11 +1321,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-134"><a href="#cb33-134"></a></span>
 <span id="cb33-135"><a href="#cb33-135"></a></span>
 <span id="cb33-136"><a href="#cb33-136"></a><span class="in">```{r, fig.height=15, fig.width=15}</span></span>
-<span id="cb33-137"><a href="#cb33-137"></a></span>
-<span id="cb33-138"><a href="#cb33-138"></a><span class="in">ggplot(fc, aes(fill = food_category, y = consumption, x = food_category)) + </span></span>
-<span id="cb33-139"><a href="#cb33-139"></a><span class="in">  geom_boxplot() + </span></span>
-<span id="cb33-140"><a href="#cb33-140"></a><span class="in">  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + </span></span>
-<span id="cb33-141"><a href="#cb33-141"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb33-137"><a href="#cb33-137"></a><span class="in"># </span></span>
+<span id="cb33-138"><a href="#cb33-138"></a><span class="in"># ggplot(fc, aes(fill = food_category, y = consumption, x = food_category)) + </span></span>
+<span id="cb33-139"><a href="#cb33-139"></a><span class="in">#   geom_boxplot() + </span></span>
+<span id="cb33-140"><a href="#cb33-140"></a><span class="in">#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + </span></span>
+<span id="cb33-141"><a href="#cb33-141"></a><span class="in">#   theme_minimal()</span></span>
 <span id="cb33-142"><a href="#cb33-142"></a></span>
 <span id="cb33-143"><a href="#cb33-143"></a><span class="in">```</span></span>
 <span id="cb33-144"><a href="#cb33-144"></a></span>
@@ -1350,37 +1347,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-160"><a href="#cb33-160"></a><span class="in">    axis.title.y = element_text(size = 16, face = "bold"),  </span></span>
 <span id="cb33-161"><a href="#cb33-161"></a><span class="in">    plot.title = element_text(size = 20, face = "bold", hjust = 0.5, margin = margin(b = 15)),  </span></span>
 <span id="cb33-162"><a href="#cb33-162"></a><span class="in">    plot.caption = element_text(size = 12, hjust = 0, margin = margin(t = 10)) </span></span>
-<span id="cb33-163"><a href="#cb33-163"></a><span class="in">  )</span></span>
-<span id="cb33-164"><a href="#cb33-164"></a></span>
-<span id="cb33-165"><a href="#cb33-165"></a><span class="in"># I had to look up the theme details because the text elements were originally too small. </span></span>
-<span id="cb33-166"><a href="#cb33-166"></a><span class="in">  </span></span>
-<span id="cb33-167"><a href="#cb33-167"></a><span class="in">```</span></span>
-<span id="cb33-168"><a href="#cb33-168"></a></span>
+<span id="cb33-163"><a href="#cb33-163"></a><span class="in">  ) + </span></span>
+<span id="cb33-164"><a href="#cb33-164"></a><span class="in">  theme_minimal()</span></span>
+<span id="cb33-165"><a href="#cb33-165"></a></span>
+<span id="cb33-166"><a href="#cb33-166"></a><span class="in"># I had to look up the theme details because the text elements were originally too small. </span></span>
+<span id="cb33-167"><a href="#cb33-167"></a><span class="in">  </span></span>
+<span id="cb33-168"><a href="#cb33-168"></a><span class="in">```</span></span>
 <span id="cb33-169"><a href="#cb33-169"></a></span>
-<span id="cb33-170"><a href="#cb33-170"></a><span class="in">```{r, fig.height=22, fig.width=11}</span></span>
-<span id="cb33-171"><a href="#cb33-171"></a><span class="in">#| fig-alt: "What does the consumption of each food category in each country look like? The x-axis represents consumption, the y axis represents country, and the color represents the food category. Yellow represents wheat and wheat products, very light green represents soybeans, light green represents rice, green represents poultry, dark green represents pork, teal represents nuts inc. peanut butter, dark teal represents milk inc. cheese, very dark teal represents lamb and goat, dark blue represents fish, purple represents eggs, and dark purple represents beef. </span></span>
-<span id="cb33-172"><a href="#cb33-172"></a><span class="in">#| </span></span>
-<span id="cb33-173"><a href="#cb33-173"></a><span class="in">#|  Yellow represents seasons twenty and above, blue represents seasons eleven to twenty, and purple represents seasons ten and below. This graph was created in 2025 by Nolan Rittenberg"</span></span>
-<span id="cb33-174"><a href="#cb33-174"></a></span>
+<span id="cb33-170"><a href="#cb33-170"></a></span>
+<span id="cb33-171"><a href="#cb33-171"></a><span class="in">```{r, fig.height=22, fig.width=11}</span></span>
+<span id="cb33-172"><a href="#cb33-172"></a><span class="in">#| fig-alt: "What does the consumption of each food category in each country look like? The x-axis represents consumption, the y axis represents country, and the color represents the food category. Yellow represents wheat and wheat products, very light green represents soybeans, light green represents rice, green represents poultry, dark green represents pork, teal represents nuts inc. peanut butter, dark teal represents milk inc. cheese, very dark teal represents lamb and goat, dark blue represents fish, purple represents eggs, and dark purple represents beef. </span></span>
+<span id="cb33-173"><a href="#cb33-173"></a><span class="in">#| </span></span>
+<span id="cb33-174"><a href="#cb33-174"></a><span class="in">#|  Yellow represents seasons twenty and above, blue represents seasons eleven to twenty, and purple represents seasons ten and below. This graph was created in 2025 by Nolan Rittenberg"</span></span>
 <span id="cb33-175"><a href="#cb33-175"></a></span>
-<span id="cb33-176"><a href="#cb33-176"></a><span class="in">ggplot(fc, aes(x = consumption, y = country, fill = food_category)) + </span></span>
-<span id="cb33-177"><a href="#cb33-177"></a><span class="in">  geom_bar(stat = "identity") + </span></span>
-<span id="cb33-178"><a href="#cb33-178"></a><span class="in">  theme_minimal() + </span></span>
-<span id="cb33-179"><a href="#cb33-179"></a><span class="in">  scale_fill_viridis_d() +</span></span>
-<span id="cb33-180"><a href="#cb33-180"></a><span class="in">  labs(</span></span>
-<span id="cb33-181"><a href="#cb33-181"></a><span class="in">    title = "What does the consumption of each food category in each country look like?",</span></span>
-<span id="cb33-182"><a href="#cb33-182"></a><span class="in">    subtitle = "By: Nolan Rittenberg (2025)",</span></span>
-<span id="cb33-183"><a href="#cb33-183"></a><span class="in">    fill = "Food Category", </span></span>
-<span id="cb33-184"><a href="#cb33-184"></a><span class="in">    x = "Consumption",</span></span>
-<span id="cb33-185"><a href="#cb33-185"></a><span class="in">    y = "Country"</span></span>
-<span id="cb33-186"><a href="#cb33-186"></a><span class="in">  )</span></span>
-<span id="cb33-187"><a href="#cb33-187"></a><span class="in">   </span></span>
-<span id="cb33-188"><a href="#cb33-188"></a></span>
+<span id="cb33-176"><a href="#cb33-176"></a></span>
+<span id="cb33-177"><a href="#cb33-177"></a><span class="in">ggplot(fc, aes(x = consumption, y = country, fill = food_category)) + </span></span>
+<span id="cb33-178"><a href="#cb33-178"></a><span class="in">  geom_bar(stat = "identity") + </span></span>
+<span id="cb33-179"><a href="#cb33-179"></a><span class="in">  theme_minimal() + </span></span>
+<span id="cb33-180"><a href="#cb33-180"></a><span class="in">  scale_fill_viridis_d() +</span></span>
+<span id="cb33-181"><a href="#cb33-181"></a><span class="in">  labs(</span></span>
+<span id="cb33-182"><a href="#cb33-182"></a><span class="in">    title = "What does the consumption of each food category in each country look like?",</span></span>
+<span id="cb33-183"><a href="#cb33-183"></a><span class="in">    subtitle = "By: Nolan Rittenberg (2025)",</span></span>
+<span id="cb33-184"><a href="#cb33-184"></a><span class="in">    fill = "Food Category", </span></span>
+<span id="cb33-185"><a href="#cb33-185"></a><span class="in">    x = "Consumption",</span></span>
+<span id="cb33-186"><a href="#cb33-186"></a><span class="in">    y = "Country"</span></span>
+<span id="cb33-187"><a href="#cb33-187"></a><span class="in">  )</span></span>
+<span id="cb33-188"><a href="#cb33-188"></a><span class="in">   </span></span>
 <span id="cb33-189"><a href="#cb33-189"></a></span>
-<span id="cb33-190"><a href="#cb33-190"></a><span class="in">```</span></span>
-<span id="cb33-191"><a href="#cb33-191"></a></span>
+<span id="cb33-190"><a href="#cb33-190"></a></span>
+<span id="cb33-191"><a href="#cb33-191"></a><span class="in">```</span></span>
 <span id="cb33-192"><a href="#cb33-192"></a></span>
 <span id="cb33-193"><a href="#cb33-193"></a></span>
+<span id="cb33-194"><a href="#cb33-194"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
