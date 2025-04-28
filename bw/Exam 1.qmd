@@ -120,11 +120,11 @@ At least five effective viz concepts for this research question:
 
 
 ```{r, fig.height=15, fig.width=15}
-
-ggplot(fc, aes(fill = food_category, y = consumption, x = food_category)) + 
-  geom_boxplot() + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  theme_minimal()
+# 
+# ggplot(fc, aes(fill = food_category, y = consumption, x = food_category)) + 
+#   geom_boxplot() + 
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+#   theme_minimal()
 
 ```
 
@@ -146,7 +146,8 @@ ggplot(fc, aes(x = food_category, y = consumption, fill = food_category)) +
     axis.title.y = element_text(size = 16, face = "bold"),  
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5, margin = margin(b = 15)),  
     plot.caption = element_text(size = 12, hjust = 0, margin = margin(t = 10)) 
-  )
+  ) + 
+  theme_minimal()
 
 # I had to look up the theme details because the text elements were originally too small. 
   

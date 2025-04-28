@@ -151,6 +151,8 @@ ggplot(country_category_consumption, aes(x = consumption, y = country)) +
 
 ```{r}
 #| fig-alt: "This visualization is a set of faceted choropleth maps with each represent a different food category. The blue gradient represents amount of consumption. Dark blue represents a lower amount of consumption and light blue represents a higher amount of consumption. This visualization was created by Nolan Rittenberg in 2025."
+#| fig-height: 11
+#| fig-width: 8
 
 ne_countries(returnclass = "sf") |> 
   select(name, geometry) |>
@@ -169,7 +171,7 @@ ne_countries(returnclass = "sf") |>
                values_to = "consumption") |>
   ggplot() + 
   geom_sf(aes(fill = consumption)) + 
-  facet_wrap(~food_category) + 
+  facet_wrap(~food_category, ncol = 2) + 
   theme(legend.position = "bottom") + 
   labs(
     title = "Density of Consumption by Food Category ( Faceted Choropleth Maps)", 
