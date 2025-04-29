@@ -119,14 +119,15 @@ country_category_consumption
 ```
 
 
-```{r, fig.height=11, fig.width=18}
+```{r}
 #| fig-alt: "The title of this graph is, Each Food Category's Top 5 Consumer Countries. The x axis represents consumption, the y axis represents country, and each faceted graph represents a different food category. This graph was created by Nolan Rittenberg in 2025."
-
+#| fig-height: 11
+#| fig-width: 9
 
 
 
 ggplot(country_category_consumption, aes(x = consumption, y = country)) + 
-  facet_wrap(~food_category, scales = "free_y") +
+  facet_wrap(~food_category, scales = "free_y", ncol = 2) +
   geom_col() + 
   labs(
     title = "Each Food Category's Top 5 Consumer Countries",
@@ -138,7 +139,7 @@ ggplot(country_category_consumption, aes(x = consumption, y = country)) +
     plot.title = element_text(size = 20, face = "bold", hjust = 0.5),
     plot.subtitle = element_text(size = 15, hjust = 0.5)
   ) + 
-  theme_bw()
+  theme_bw() 
 
 # Had to do online research to figure out how to only show the top 5 values in each faceted graph. This is how I know to use "free_y"
 
